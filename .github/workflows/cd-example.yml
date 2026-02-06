@@ -7,7 +7,7 @@ jobs:
   upload_outputs:
     runs-on: ubuntu-latest
     env:
-      IMAGE_TAG: "2.0.0"
+      IMAGE_TAG: "3.0.0"
       IMAGE_NAME: example-image
     steps:
       - name: Create Artifact File
