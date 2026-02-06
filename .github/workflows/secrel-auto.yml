@@ -17,6 +17,7 @@ jobs:
       with:
         run-id: ${{ github.event.workflow_run.id }}
         github-token: ${{ secrets.PAT_READ_ACTIONS }}
+        name: artifact
     - name: Read and Output Image Data
       id: read_data
       run: |
