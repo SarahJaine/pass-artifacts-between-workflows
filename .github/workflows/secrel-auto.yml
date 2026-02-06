@@ -18,13 +18,17 @@ jobs:
         run-id: ${{ github.event.workflow_run.id }}
         github-token: ${{ secrets.PAT_READ_ACTIONS }}
         name: artifact
+    - name: Display structure of working dir
+      run: ls -R
+    - name: Display structure of downloaded files
+      run: ls -R $GITHUB_WORKSPACE
     - name: Read and Output Image Data
       id: read_data
       run: |
         echo ${{ github.event.workflow_run.id }}
         echo "$GITHUB_WORKSPACE"
-        IMAGE_NAME=$(jq -r '.image_name' $GITHUB_WORKSPACE/artifact/deployment.json)
-        IMAGE_TAG=$(jq -r '.image_tag' $GITHUB_WORKSPACE/artifact/deployment.json)
+        IMAGE_NAME=$(jq -r '.image_name' $GITHUB_WORKSPACE/deployment.json)
+        IMAGE_TAG=$(jq -r '.image_tag' $GITHUB_WORKSPACE/deployment.json)
 
         echo "The image name is: $IMAGE_NAME"
         echo "The image tag is: $IMAGE_TAG"
