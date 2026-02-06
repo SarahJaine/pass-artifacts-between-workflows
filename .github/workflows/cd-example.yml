@@ -5,7 +5,6 @@ on:
 
 jobs:
   upload_outputs:
-    needs: [cd]
     runs-on: ubuntu-latest
     env:
       IMAGE_TAG: "1.0.0"
