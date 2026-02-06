@@ -16,12 +16,11 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         run-id: ${{ github.event.workflow_run.id }}
-        github-token: ${{ secrets.READ_ACTIONS }} # Wil update to common PAT later, this is just to prove it works
+        github-token: ${{ secrets.PAT_READ_ACTIONS }}
     - name: Read and Output Image Data
       id: read_data
       run: |
         echo ${{ github.event.workflow_run.id }}
-        echo "${{ github.event.workflow_run.id }}"
         echo "$GITHUB_WORKSPACE"
         IMAGE_NAME=$(jq -r '.image_name' $GITHUB_WORKSPACE/artifact/deployment.json)
         IMAGE_TAG=$(jq -r '.image_tag' $GITHUB_WORKSPACE/artifact/deployment.json)
