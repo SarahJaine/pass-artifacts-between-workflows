@@ -1,0 +1,33 @@
+name: SecRel Auto Example
+on:
+  workflow_run:
+    workflows: ["CD-example"]
+    types: [completed]
+    branches: ["**"]
+
+jobs:
+  parse_file:
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.read_data.outputs.image_tag }}
+      image_name: ${{ steps.read_data.outputs.image_name }}
+    steps:
+    - name: Download Deployment Data Artifact
+      uses: actions/download-artifact@v4
+      with:
+        run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.READ_ACTIONS }} # Wil update to common PAT later, this is just to prove it works
+    - name: Read and Output Image Data
+      id: read_data
+      run: |
+        echo ${{ github.event.workflow_run.id }}
+        echo "${{ github.event.workflow_run.id }}"
+        echo "$GITHUB_WORKSPACE"
+        IMAGE_NAME=$(jq -r '.image_name' $GITHUB_WORKSPACE/artifact/deployment.json)
+        IMAGE_TAG=$(jq -r '.image_tag' $GITHUB_WORKSPACE/artifact/deployment.json)
+
+        echo "The image name is: $IMAGE_NAME"
+        echo "The image tag is: $IMAGE_TAG"
+
+        echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
+        echo "image_tag=$IMAGE_TAG" >> $GITHUB_OUTPUT
