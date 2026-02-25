@@ -59,6 +59,7 @@ jobs:
   #     run : echo "jobs must have steps to be valid"
 
   use_env_var:
+    if: ${{ success() || skipped() }}
     needs: parse_deployment
     runs-on: ubuntu-latest
     env:
@@ -68,6 +69,6 @@ jobs:
     - name: output_image
       run : echo ${{ env.IMAGE }}
     - name: output_tag
-      run : echo ${{ needs.TAG }}
+      run : echo ${{ env.TAG }}
 
 # Instead of using feature branch "SecRel Auto Example" workflow, CD-Example always runs "SecRel Auto Example" that is on `main`
