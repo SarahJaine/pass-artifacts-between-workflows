@@ -54,15 +54,18 @@ jobs:
     outputs:
       image: ${{ inputs.image }} || ${{ needs.parse_deployment.outputs.image_name }}
       tag: ${{ inputs.tag }} || ${{ needs.parse_deployment.outputs.image_tag }}
+    steps:
+    - name: output_image
+      run : echo "hello"
 
   use_env_var:
     needs: store_env_var
     runs-on: ubuntu-latest
     steps:
-      - name: output_image
-        run : echo ${{ needs.store_env_var.outputs.image }}
-      - name: output_tag
-        run : echo ${{ needs.store_env_var.outputs.tag }}
+    - name: output_image
+      run : echo ${{ needs.store_env_var.outputs.image }}
+    - name: output_tag
+      run : echo ${{ needs.store_env_var.outputs.tag }}
 
 
 # Instead of using feature branch "SecRel Auto Example" workflow, CD-Example always runs "SecRel Auto Example" that is on `main`
