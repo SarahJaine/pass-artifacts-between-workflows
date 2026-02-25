@@ -20,9 +20,12 @@ jobs:
   parse_deployment:
     if: ${{ github.event_name == 'workflow_run' }}
     runs-on: ubuntu-latest
-    outputs:
-      image_tag: ${{ steps.read_data.outputs.image_tag }}
-      image_name: ${{ steps.read_data.outputs.image_name }}
+    env:
+      IMAGE: ${{ steps.read_data.outputs.image_tag }}
+      TAG: ${{ steps.read_data.outputs.image_name }}
+    # outputs:
+    #   image_tag: ${{ steps.read_data.outputs.image_tag }}
+    #   image_name: ${{ steps.read_data.outputs.image_name }}
     steps:
     - name: Download Deployment Data Artifact
       uses: actions/download-artifact@v4
