@@ -56,7 +56,7 @@ jobs:
       tag: ${{ inputs.tag }} || ${{ needs.parse_deployment.outputs.image_tag }}
 
   use_env_var:
-    needs: stor_env_var
+    needs: store_env_var
     runs-on: ubuntu-latest
     steps:
       - name: output_image
