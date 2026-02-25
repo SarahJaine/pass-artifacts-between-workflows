@@ -59,6 +59,7 @@ jobs:
   #     run : echo "jobs must have steps to be valid"
 
   use_env_var:
+    if: ${{ success() || skipped() }}
     needs: parse_deployment
     runs-on: ubuntu-latest
     env:
