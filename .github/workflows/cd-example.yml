@@ -7,20 +7,24 @@ jobs:
   upload_outputs:
     runs-on: ubuntu-latest
     env:
+<<<<<<< Updated upstream
       IMAGE_TAG: "1.0.0"
       IMAGE_NAME: example-image
+=======
+      IMAGE_NAME: "new-image"
+      IMAGE_TAG: "0.1.2"
+>>>>>>> Stashed changes
     steps:
       - name: Create Artifact File
         id: create_file
         if: success()
         run: |
-          echo "got tag: $IMAGE_TAG"
           echo "got name: $IMAGE_NAME"
-
+          echo "got tag: $IMAGE_TAG"
           echo "{\"image_name\": \"$IMAGE_NAME\", \"image_tag\": \"$IMAGE_TAG\"}" > deployment.json
       - name: Upload Artifact
         id: upload_file
         uses: actions/upload-artifact@v4
         with:
           path: deployment.json
-          retention-days: 5
+          retention-days: 7
