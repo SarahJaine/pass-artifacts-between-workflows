@@ -14,12 +14,13 @@ jobs:
         id: create_file
         if: success()
         run: |
-          echo "got name: $IMAGE_NAME"
           echo "got tag: $IMAGE_TAG"
+          echo "got name: $IMAGE_NAME"
+
           echo "{\"image_name\": \"$IMAGE_NAME\", \"image_tag\": \"$IMAGE_TAG\"}" > deployment.json
       - name: Upload Artifact
         id: upload_file
         uses: actions/upload-artifact@v4
         with:
           path: deployment.json
-          retention-days: 7
+          retention-days: 5
