@@ -7,7 +7,7 @@ jobs:
   upload_outputs:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: "new-image"
+      IMAGE_NAME: new-image
       IMAGE_TAG: "0.1.2"
     steps:
       - name: Create Artifact File
