@@ -7,18 +7,8 @@ jobs:
   upload_outputs:
     runs-on: ubuntu-latest
     env:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      IMAGE_TAG: "1.0.0"
-      IMAGE_NAME: example-image
-=======
-      IMAGE_NAME: "new-image"
+      IMAGE_NAME: new-image
       IMAGE_TAG: "0.1.2"
->>>>>>> Stashed changes
-=======
-      IMAGE_TAG: "4.0.0"
-      IMAGE_NAME: "new-image"
->>>>>>> Stashed changes
     steps:
       - name: Create Artifact File
         id: create_file
